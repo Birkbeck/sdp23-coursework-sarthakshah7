@@ -2,6 +2,7 @@ package sml;
 
 import sml.instruction.*;
 
+import javax.print.attribute.standard.JobName;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -15,7 +16,7 @@ import static sml.Registers.Register;
  * <p>
  * The translator of a <b>S</b><b>M</b>al<b>L</b> program.
  *
- * @author ...
+ * @author Sarthak Shah
  */
 public final class Translator {
 
@@ -70,10 +71,46 @@ public final class Translator {
             case AddInstruction.OP_CODE -> {
                 String r = scan();
                 String s = scan();
+                String c = scan();
+                // System.out.println(c);
                 return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
             }
 
             // TODO: add code for all other types of instructions
+            case MovInstruction.OP_CODE -> {
+                String r = scan();
+                String s = scan();
+                return new MovInstruction(label, Register.valueOf(r), s);
+            }
+
+            case SubInstruction.OP_CODE -> {
+                String r = scan();
+                String s = scan();
+                return new SubInstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+
+            case MulInstruction.OP_CODE -> {
+                String r = scan();
+                String s = scan();
+                return new MulInstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+
+            case DivInstruction.OP_CODE -> {
+                String r = scan();
+                String s = scan();
+                return new DivInstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+
+            case OutInstruction.OP_CODE -> {
+                String r = scan();
+                return new OutInstruction(label, Register.valueOf(r));
+            }
+
+            case JnzInstruction.OP_CODE -> {
+                String r = scan();
+                String jmpL = scan();
+                return new JnzInstruction(label, Register.valueOf(r), jmpL);
+            }
 
             // TODO: Then, replace the switch by using the Reflection API
 

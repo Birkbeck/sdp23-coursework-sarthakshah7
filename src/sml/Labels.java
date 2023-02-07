@@ -35,6 +35,10 @@ public final class Labels {
 		// TODO: Where can NullPointerException be thrown here?
 		//       (Write an explanation.)
 		//       Add code to deal with non-existent labels.
+
+		if(!labels.containsKey(label)){
+			throw new NullPointerException();
+		}
 		return labels.get(label);
 	}
 

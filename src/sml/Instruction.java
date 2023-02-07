@@ -4,13 +4,14 @@ package sml;
 
 /**
  * Represents an abstract instruction.
- *
- * @author ...
+ * @description It is a blue-print of an instruction to be executed by the interpreter.
+ * @author Sarthak Shah
+ * @modified_date 02/March/2023
  */
 public abstract class Instruction {
 	protected final String label;
 	protected final String opcode;
-
+	//protected final String comment;
 	/**
 	 * Constructor: an instruction with a label and an opcode
 	 * (opcode must be an operation of the language)
@@ -50,8 +51,19 @@ public abstract class Instruction {
 
 	// TODO: What does abstract in the declaration below mean?
 	//       (Write a short explanation.)
+	/**
+	 *
+	 * The methods declared as abstract are supposed to be implemented by all its subclasses.
+	 * It will force all the subclasses to define the execution steps in it.
+	 */
+
 	@Override
 	public abstract String toString();
 
 	// TODO: Make sure that subclasses also implement equals and hashCode (needed in class Machine).
+	@Override
+	public abstract boolean equals(Object o);
+
+	@Override
+	public abstract int hashCode();
 }
